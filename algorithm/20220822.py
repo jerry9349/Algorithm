@@ -10,6 +10,12 @@ while x > 5:
 array = [9,8,7,6,5]
 for x in array:
   print(x)
+# 출력 결과 : 
+# 9
+# 8
+# 7
+# 6
+# 5
 
 #range() : for문에서 연속적인 값을 차례대로 순회, range(시작 값, 끝 값+1)
 result = 0
@@ -18,7 +24,7 @@ for i in range(1,10):
     continue
   result += 1
 
-print(result)
+print(result) # 출력 결과 : 5
 
 scores = [90,85,77,65,97]
 cheating_student_list = {2,4}
@@ -27,13 +33,21 @@ for i in range(5):
     continue
   if scores[i] >= 80:
     print(i+1,"번 학생은 합격입니다.")
+# 출력 결과 : 
+# 1 번 학생은 합격입니다.
+# 5 번 학생은 합격입니다.
 
 #중첩된 반복문
 for i in range(2,10):
   for j in range(1,10):
     print(i,"X",j,"=",i*j)
     print()
-
+# 출력 결과 :
+# 2 X 1 = 2
+# 2 X 2 = 4
+# 2 X 3 = 6
+# 2 X 4 = 8
+# 2 X 5 = 10 ...
 
 
 ###함수###
@@ -47,10 +61,10 @@ def subtract(a,b):
   return a-b
 
 result = add(3,7)
-print(result)
+print(result) # 출력 결과 : 10
 #파라미터 변수 직접 지정 가능
 result = subtract(b=3,a=7)
-print(result)
+print(result) # 출력 결과 : 4
 
 #global 키워드로 변수를 지정하면 해당 함수에서는 지역 변수를 만들지 않고, 함수 바깥에 선언된 변수를 바로 참조
 a = 0
@@ -61,7 +75,7 @@ def func():
 for i in range(10):
   func()
 # 전역변수 a값을 참조함
-print(a)
+print(a) # 출력 결과 : 10
 
 # 전역변수 array의 내부 메소드 호출은 global 필요없음
 array1 = [1,2,3,4,5]
@@ -69,6 +83,7 @@ def func1():
   array1.append(6)
   print(array1)
 func1()
+# 출력 결과 : [1, 2, 3, 4, 5, 6]
 
 
 #파이썬 함수는 여러개 반환값을 가짐(패킹, 언패핑)
@@ -83,6 +98,7 @@ def aperator(a,b):
 #언패킹
 a,b,c,d = aperator(7,3)
 print(a,b,c,d)
+# 출력 결과 : 10 4 21 2.3333333333333335
 
 
 ###람다 표현식###
@@ -90,20 +106,22 @@ print(a,b,c,d)
 #이름없는 함수라 불림
 #함수 기능이 간단하거나 한번만 사용할 경우에 사용
 print((lambda a,b:a+b)(3,7))
+# 출력 결과 : 10
 
 array2 = [('홍길동',50),('이순신',32),('아무개',74)]
 def my_key(x):
   return x[1]
 
-print(sorted(array2,key=my_key))
-print(sorted(array2,key=lambda x:x[1]))
+print(sorted(array2,key=my_key)) # 출력 결과 : [('이순신', 32), ('홍길동', 50), ('아무개', 74)]
+print(sorted(array2,key=lambda x:x[1])) # 출력 결과 : [('이순신', 32), ('홍길동', 50), ('아무개', 74)]
 
 
 # 람다를 여러개의 리스트에 적용
 list1 =[1,2,3,4,5]
 list2 =[6,7,8,9,10]
 result = map(lambda a,b: a+b,list1,list2)
-print(list(result))
+print(list(result))  
+# 출력 결과 : [7, 9, 11, 13, 15]
 
 
 ###실전에서 유용한 표준 라이브러리###
@@ -124,12 +142,14 @@ print(list(result))
 #sorted() : 리스트같은 반복가능한 개체가 들어왔을때 각 원소를 정렬한 결과 반환
 result = sorted([9,1,8,5,4])
 reverse_result = sorted([9,1,8,5,4],reverse=True)
-print(result)
-print(reverse_result)
+print(result)  # 출력 결과 : [1, 4, 5, 8, 9]
+print(reverse_result)  # 출력 결과 : [9, 8, 5, 4, 1]
+
 #sorted는 키 속성으로 정렬 기준을 명시할 수 있음
 array3 = [('홍길동',35),('이순신',75),('아무개',50)]
 result = sorted(array3, key=lambda x:x[1],reverse=True)
-print(result)
+print(result) 
+# 출력 결과 : [('이순신', 75), ('아무개', 50), ('홍길동', 35)]
 print("==================================================")
 
 ### 순열과 조합 ###
@@ -140,6 +160,7 @@ from itertools import permutations
 data = ['A','B','C']
 result = list(permutations(data,3))
 print(result)
+# 출력 결과 : [('A', 'B', 'C'), ('A', 'C', 'B'), ('B', 'A', 'C'), ('B', 'C', 'A'), ('C', 'A', 'B'), ('C', 'B', 'A')]
 print("==================================================")
 
 #조합:서로다른 n개에서 순서에 상관없이 서로 다른 r개를 선택하는 것
@@ -149,6 +170,7 @@ from itertools import combinations
 data = ['A','B','C']
 result = list(combinations(data,2))
 print(result)
+# 출력 결과 : [('A', 'B'), ('A', 'C'), ('B', 'C')]
 print("==================================================")
 
 ## 중복 순열과 중복 조합 ##
@@ -157,6 +179,7 @@ from itertools import product
 data = ['A','B','C']
 result = list(product(data,repeat=2))#2개를 뽑는 모든 순열 구하기(중복 허용)
 print(result)
+# 출력 결과 : [('A', 'A'), ('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'B'), ('B', 'C'), ('C', 'A'), ('C', 'B'), ('C', 'C')]
 print("==================================================")
 
 from itertools import combinations_with_replacement
@@ -164,6 +187,7 @@ from itertools import combinations_with_replacement
 data = ['A','B','C']
 result = list(combinations_with_replacement(data,2))#2개를 뽑는 모든 조합 구하기(중복허용)
 print(result)
+# 출력 결과 : [('A', 'A'), ('A', 'B'), ('A', 'C'), ('B', 'B'), ('B', 'C'), ('C', 'C')]
 print("==================================================")
 
 
@@ -173,9 +197,9 @@ print("==================================================")
 #리스트와 같은 반복 가능한 객체가 주어졌을 경우 내부의 원소가 몇 번씩 등장했는지 알려줌
 from collections import Counter
 counter = Counter(['red','blue','red','green','blue','blue'])
-print(counter['blue'])#blue 등장횟수 출력
-print(counter['green'])#greeb 등장횟수 출력
-print(dict(counter))#사전자료형으로 반환
+print(counter['blue'])#blue 등장횟수 출력 # 출력 결과 : 3
+print(counter['green'])#greeb 등장횟수 출력 # 출력 결과 : 1
+print(dict(counter))#사전자료형으로 반환 # 출력 결과 : {'red': 2, 'blue': 3, 'green': 1}
 print("==================================================")
 
 ## math 최대공약수와 최소공배수 ##
@@ -186,5 +210,6 @@ def lcm(e,f):
 
 e=21
 f=14
-print(math.gcd(21,14))
-print(lcm(21,14))
+print(math.gcd(21,14)) # 출력 결과 : 7 
+print(lcm(21,14)) # 출력 결과 : 42
+
