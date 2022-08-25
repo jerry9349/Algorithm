@@ -46,13 +46,15 @@ print("거슬러준 총 동전 갯수 :",count)
 
 # N, K을 공백을 기준으로 구분하여 입력 받기
 n, k = map(int, input().split())
-result = 0
+result = 0 # 총 연산을 수행하는 횟수
 
 while True :
   # N이 K로 나누어 떨어지는 수가 될 때까지 빼기
+  print("n :",n,", k :",k,", n//k : ", n//k,", (n//k) * K :",(n // k)*k)
   target = (n // k) * k
-  print(target)
+  print("target : ",target,", result :",result,", n:",n)
   result += (n - target)
+  print(n-target)  
   n = target
   # N이 K보다 적을 때 (더 이상 나눌 수 없을 때) 반복문 탈출
   if n < k :
@@ -61,9 +63,20 @@ while True :
   # K로 나누기
   result += 1
   n //= k
-
+  print("=========================")  
+print("result :",result,", n :",n)
 # 마지막으로 남은 수에 대하여 1씩 빼기
 result += (n - 1)
-print(result)
+print("--------------------------") 
+print("총 횟수 : ",result)
+
+# 풀이
+# 1. target = (n // k) * k : n이 k로 나누어 떨어지지 않아도, 가장 가까운 k로 나누어 떨어지는 수가 어떤 것인지 찾는다, target은 k로 나누어 떨어지는 수이며, target이 될때까지 -1 을 몇번 해야할지 알 수 있다
+# 2. result += (n - target) : (n-target)을 하면 -1을 몇번 빼야할지 알 수 있음
+# 3. n = target : 몇번 빼야할지 구하면 n이 tartget이 될 수 있도록 만든다
+# 4. if n < k : break : N이 K보다 적을 때 (더 이상 나눌 수 없을 때) 반복문 탈출
+# 5. result += 1 : 아직 n > k 라면 더 나눠줘야 하므로 result에 횟수를 1씩 더해준다
+# 6. n //= k : result ++ 해주고, n을 k로 나눠준 후 n 값을 나눈 값으로 계속 초기화 한다
+# 7. result += (n - 1) : n이 1보다 크다면 1이 될수 있도록 만들기 위해 마지막으로 남은 수를 1씩 뺀다 
 
 
